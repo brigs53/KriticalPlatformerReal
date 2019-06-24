@@ -1,0 +1,399 @@
+[gd_scene load_steps=64 format=2]
+
+[ext_resource path="res://Scripts/p_main.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Sprites/adventurer.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Sprites/heart.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Hitbox.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 13.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="Animation" id=3]
+resource_name = "attack_g_full"
+length = 1.3
+loop = true
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.48, 0.54, 0.6, 0.7, 0.76, 0.92, 0.98, 1.04, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 41, 42, 43, 44, 45, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58 ]
+}
+
+[sub_resource type="Animation" id=42]
+resource_name = "crouch"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=43]
+resource_name = "crouch walk"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 161, 162, 163, 164, 165, 166 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 22, 23 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 17, 18, 19, 20, 21 ]
+}
+
+[sub_resource type="Animation" id=52]
+resource_name = "ground slide"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26, 27, 28 ]
+}
+
+[sub_resource type="Animation" id=6]
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.24
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 14, 15, 16, 17 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 12, 13 ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "run2"
+length = 0.48
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 167, 168, 169, 170, 171, 172 ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 79, 80 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "attack_g_full"
+
+[sub_resource type="AnimationNodeAnimation" id=45]
+animation = "crouch walk"
+
+[sub_resource type="AnimationNodeAnimation" id=44]
+animation = "crouch"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "fall"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "flip"
+
+[sub_resource type="AnimationNodeAnimation" id=53]
+animation = "ground slide"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "jump"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "run"
+
+[sub_resource type="AnimationNodeAnimation" id=37]
+animation = "run2"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "wall slide"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=57]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=58]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=59]
+
+[sub_resource type="AnimationNodeStateMachine" id=34]
+states/attack_g_full/node = SubResource( 10 )
+states/attack_g_full/position = Vector2( -159, 730.704 )
+states/crouch/node = SubResource( 44 )
+states/crouch/position = Vector2( -534.178, 586 )
+"states/crouch walk/node" = SubResource( 45 )
+"states/crouch walk/position" = Vector2( -534.178, 413 )
+states/fall/node = SubResource( 11 )
+states/fall/position = Vector2( -169, 413 )
+states/flip/node = SubResource( 12 )
+states/flip/position = Vector2( -159, 301 )
+"states/ground slide/node" = SubResource( 53 )
+"states/ground slide/position" = Vector2( 7.82202, 413 )
+states/idle/node = SubResource( 13 )
+states/idle/position = Vector2( -346, 586 )
+states/jump/node = SubResource( 14 )
+states/jump/position = Vector2( -442, 494 )
+states/run/node = SubResource( 15 )
+states/run/position = Vector2( -159, 586 )
+states/run2/node = SubResource( 37 )
+states/run2/position = Vector2( 7.82202, 586 )
+"states/wall slide/node" = SubResource( 16 )
+"states/wall slide/position" = Vector2( -346, 413 )
+transitions = [ "run", "idle", SubResource( 17 ), "idle", "run", SubResource( 18 ), "idle", "jump", SubResource( 19 ), "jump", "fall", SubResource( 20 ), "fall", "run", SubResource( 21 ), "run", "jump", SubResource( 22 ), "fall", "idle", SubResource( 23 ), "wall slide", "idle", SubResource( 24 ), "wall slide", "flip", SubResource( 25 ), "flip", "fall", SubResource( 26 ), "idle", "attack_g_full", SubResource( 27 ), "run", "attack_g_full", SubResource( 28 ), "attack_g_full", "run", SubResource( 29 ), "attack_g_full", "idle", SubResource( 30 ), "fall", "wall slide", SubResource( 31 ), "flip", "wall slide", SubResource( 32 ), "wall slide", "fall", SubResource( 33 ), "run", "run2", SubResource( 38 ), "run2", "run", SubResource( 39 ), "run2", "jump", SubResource( 40 ), "run2", "attack_g_full", SubResource( 41 ), "crouch walk", "jump", SubResource( 46 ), "idle", "crouch", SubResource( 47 ), "crouch", "idle", SubResource( 48 ), "crouch", "crouch walk", SubResource( 49 ), "crouch walk", "crouch", SubResource( 50 ), "crouch", "jump", SubResource( 51 ), "run2", "ground slide", SubResource( 54 ), "ground slide", "idle", SubResource( 55 ), "ground slide", "run", SubResource( 56 ), "ground slide", "flip", SubResource( 57 ), "run", "fall", SubResource( 58 ), "run2", "fall", SubResource( 59 ) ]
+start_node = "idle"
+graph_offset = Vector2( -812.178, 216.97 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=35]
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 17
+script = ExtResource( 1 )
+runSpeed = 220.0
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+vframes = 10
+hframes = 18
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 3 )
+shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( -0.0994377, 0 )
+
+[node name="heart2" type="Sprite" parent="."]
+position = Vector2( 10, -20 )
+z_index = 1
+texture = ExtResource( 3 )
+
+[node name="heart" type="Sprite" parent="."]
+position = Vector2( 0, -20 )
+z_index = 1
+texture = ExtResource( 3 )
+
+[node name="heart1" type="Sprite" parent="."]
+position = Vector2( -10, -20 )
+z_index = 1
+texture = ExtResource( 3 )
+
+[node name="Sword Hitbox" type="Area2D" parent="."]
+editor/display_folded = true
+visible = false
+position = Vector2( 11, -3 )
+scale = Vector2( 1.5, 1.9 )
+gravity_vec = Vector2( 0, 0 )
+gravity = 0.0
+monitorable = false
+collision_layer = 4
+collision_mask = 8
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword Hitbox"]
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 6.0
+anims/attack_g_full = SubResource( 3 )
+anims/crouch = SubResource( 42 )
+"anims/crouch walk" = SubResource( 43 )
+anims/fall = SubResource( 4 )
+anims/flip = SubResource( 5 )
+"anims/ground slide" = SubResource( 52 )
+anims/idle = SubResource( 6 )
+anims/jump = SubResource( 7 )
+anims/run = SubResource( 8 )
+anims/run2 = SubResource( 36 )
+"anims/wall slide" = SubResource( 9 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 34 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 35 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

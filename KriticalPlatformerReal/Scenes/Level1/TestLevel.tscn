@@ -13,7 +13,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=11]
 [ext_resource path="res://Scripts/Pause.gd" type="Script" id=12]
 [ext_resource path="res://Fonts/BebasNeue-Regular.ttf" type="DynamicFontData" id=13]
-[ext_resource path="res://Scenes/RichTextLabel.gd" type="Script" id=14]
+[ext_resource path="res://Scripts/RichTextLabel.gd" type="Script" id=14]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 10 )
@@ -28,12 +28,12 @@ font_data = ExtResource( 13 )
 [node name="Level1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-editor/display_folded = true
 position = Vector2( 81.2903, -281.787 )
 
 [node name="Camera2D" type="Camera2D" parent="Player" groups=[
 "Camera",
 ]]
+position = Vector2( 5.0105, 5.0105 )
 current = true
 
 [node name="skeleton" parent="." instance=ExtResource( 2 )]

@@ -21,13 +21,14 @@ _global_script_class_icons={
 [application]
 
 config/name="KriticalPlatformer"
-run/main_scene="res://Scenes/TileMap.tscn"
+run/main_scene="res://title_screen/TitleScreen.tscn"
 config/icon="res://icon.png"
 
 [display]
 
 window/size/width=1280
 window/size/height=720
+window/stretch/mode="viewport"
 window/stretch/shrink=2.0
 
 [input]
@@ -104,4 +105,5 @@ quit={
 
 [rendering]
 
+environment/default_clear_color=Color( 0.14902, 0.192157, 0.219608, 1 )
 environment/default_environment="res://default_env.tres"

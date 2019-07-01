@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Scripts/p_main.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Sprites/adventurer.png" type="Texture" id=2]
@@ -11,7 +11,23 @@ extents = Vector2( 6, 13.5 )
 [sub_resource type="RectangleShape2D" id=2]
 
 [sub_resource type="Animation" id=3]
-resource_name = "attack_g_full"
+resource_name = "Airdash"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 167, 168, 169, 169, 169, 170 ]
+}
+
+[sub_resource type="Animation" id=4]
 length = 1.3
 loop = true
 step = 0.02
@@ -28,8 +44,7 @@ tracks/0/keys = {
 "values": [ 41, 42, 43, 44, 45, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "crouch"
+[sub_resource type="Animation" id=5]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -44,8 +59,7 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "crouch walk"
+[sub_resource type="Animation" id=6]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -61,7 +75,7 @@ tracks/0/keys = {
 "values": [ 161, 162, 163, 164, 165, 166 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 0.2
 loop = true
 tracks/0/type = "value"
@@ -77,7 +91,7 @@ tracks/0/keys = {
 "values": [ 22, 23 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -93,8 +107,7 @@ tracks/0/keys = {
 "values": [ 17, 18, 19, 20, 21 ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "ground slide"
+[sub_resource type="Animation" id=9]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -109,7 +122,7 @@ tracks/0/keys = {
 "values": [ 24, 25, 26, 27, 28 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 loop = true
 step = 0.25
 tracks/0/type = "value"
@@ -125,7 +138,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=11]
 length = 0.24
 loop = true
 tracks/0/type = "value"
@@ -141,7 +154,7 @@ tracks/0/keys = {
 "values": [ 14, 15, 16, 17 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=12]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -157,8 +170,7 @@ tracks/0/keys = {
 "values": [ 8, 9, 10, 11, 12, 13 ]
 }
 
-[sub_resource type="Animation" id=12]
-resource_name = "run2"
+[sub_resource type="Animation" id=13]
 length = 0.48
 loop = true
 tracks/0/type = "value"
@@ -174,7 +186,7 @@ tracks/0/keys = {
 "values": [ 167, 168, 169, 170, 171, 172 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=14]
 length = 0.2
 loop = true
 tracks/0/type = "value"
@@ -190,42 +202,41 @@ tracks/0/keys = {
 "values": [ 79, 80 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=14]
-animation = "attack_g_full"
-
 [sub_resource type="AnimationNodeAnimation" id=15]
-animation = "crouch walk"
+animation = "Airdash"
 
 [sub_resource type="AnimationNodeAnimation" id=16]
-animation = "crouch"
+animation = "attack_g_full"
 
 [sub_resource type="AnimationNodeAnimation" id=17]
-animation = "fall"
+animation = "crouch walk"
 
 [sub_resource type="AnimationNodeAnimation" id=18]
-animation = "flip"
+animation = "crouch"
 
 [sub_resource type="AnimationNodeAnimation" id=19]
-animation = "ground slide"
+animation = "fall"
 
 [sub_resource type="AnimationNodeAnimation" id=20]
-animation = "idle"
+animation = "flip"
 
 [sub_resource type="AnimationNodeAnimation" id=21]
-animation = "jump"
+animation = "ground slide"
 
 [sub_resource type="AnimationNodeAnimation" id=22]
-animation = "run"
+animation = "idle"
 
 [sub_resource type="AnimationNodeAnimation" id=23]
-animation = "run2"
+animation = "jump"
 
 [sub_resource type="AnimationNodeAnimation" id=24]
+animation = "run"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "run2"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
 animation = "wall slide"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=27]
 
@@ -242,22 +253,20 @@ animation = "wall slide"
 [sub_resource type="AnimationNodeStateMachineTransition" id=33]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=34]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=36]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=37]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=38]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=39]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=40]
 switch_mode = 2
@@ -266,6 +275,8 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=41]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=42]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=43]
 
@@ -288,45 +299,57 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=52]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=53]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=54]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=55]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=56]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=57]
 
-[sub_resource type="AnimationNodeStateMachine" id=58]
-states/attack_g_full/node = SubResource( 14 )
-states/attack_g_full/position = Vector2( -159, 730.704 )
-states/crouch/node = SubResource( 16 )
-states/crouch/position = Vector2( -534.178, 586 )
-"states/crouch walk/node" = SubResource( 15 )
-"states/crouch walk/position" = Vector2( -534.178, 413 )
-states/fall/node = SubResource( 17 )
-states/fall/position = Vector2( -169, 413 )
-states/flip/node = SubResource( 18 )
-states/flip/position = Vector2( -159, 301 )
-"states/ground slide/node" = SubResource( 19 )
-"states/ground slide/position" = Vector2( 7.82202, 413 )
-states/idle/node = SubResource( 20 )
-states/idle/position = Vector2( -346, 586 )
-states/jump/node = SubResource( 21 )
-states/jump/position = Vector2( -442, 494 )
-states/run/node = SubResource( 22 )
-states/run/position = Vector2( -159, 586 )
-states/run2/node = SubResource( 23 )
-states/run2/position = Vector2( 7.82202, 586 )
-"states/wall slide/node" = SubResource( 24 )
-"states/wall slide/position" = Vector2( -346, 413 )
-transitions = [ "run", "idle", SubResource( 25 ), "idle", "run", SubResource( 26 ), "idle", "jump", SubResource( 27 ), "jump", "fall", SubResource( 28 ), "fall", "run", SubResource( 29 ), "run", "jump", SubResource( 30 ), "fall", "idle", SubResource( 31 ), "wall slide", "idle", SubResource( 32 ), "wall slide", "flip", SubResource( 33 ), "flip", "fall", SubResource( 34 ), "idle", "attack_g_full", SubResource( 35 ), "run", "attack_g_full", SubResource( 36 ), "attack_g_full", "run", SubResource( 37 ), "attack_g_full", "idle", SubResource( 38 ), "fall", "wall slide", SubResource( 39 ), "flip", "wall slide", SubResource( 40 ), "wall slide", "fall", SubResource( 41 ), "run", "run2", SubResource( 42 ), "run2", "run", SubResource( 43 ), "run2", "jump", SubResource( 44 ), "run2", "attack_g_full", SubResource( 45 ), "crouch walk", "jump", SubResource( 46 ), "idle", "crouch", SubResource( 47 ), "crouch", "idle", SubResource( 48 ), "crouch", "crouch walk", SubResource( 49 ), "crouch walk", "crouch", SubResource( 50 ), "crouch", "jump", SubResource( 51 ), "run2", "ground slide", SubResource( 52 ), "ground slide", "idle", SubResource( 53 ), "ground slide", "run", SubResource( 54 ), "ground slide", "flip", SubResource( 55 ), "run", "fall", SubResource( 56 ), "run2", "fall", SubResource( 57 ) ]
-start_node = "idle"
-graph_offset = Vector2( -757.178, 235.97 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=58]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=59]
+[sub_resource type="AnimationNodeStateMachineTransition" id=59]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=60]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=61]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+
+[sub_resource type="AnimationNodeStateMachine" id=63]
+states/Airdash/node = SubResource( 15 )
+states/Airdash/position = Vector2( -558.548, 265.26 )
+states/attack_g_full/node = SubResource( 16 )
+states/attack_g_full/position = Vector2( -159, 730.704 )
+states/crouch/node = SubResource( 18 )
+states/crouch/position = Vector2( -534.178, 586 )
+"states/crouch walk/node" = SubResource( 17 )
+"states/crouch walk/position" = Vector2( -534.178, 413 )
+states/fall/node = SubResource( 19 )
+states/fall/position = Vector2( -169, 413 )
+states/flip/node = SubResource( 20 )
+states/flip/position = Vector2( -159, 301 )
+"states/ground slide/node" = SubResource( 21 )
+"states/ground slide/position" = Vector2( 7.82202, 413 )
+states/idle/node = SubResource( 22 )
+states/idle/position = Vector2( -346, 586 )
+states/jump/node = SubResource( 23 )
+states/jump/position = Vector2( -442, 494 )
+states/run/node = SubResource( 24 )
+states/run/position = Vector2( -159, 586 )
+states/run2/node = SubResource( 25 )
+states/run2/position = Vector2( 7.82202, 586 )
+"states/wall slide/node" = SubResource( 26 )
+"states/wall slide/position" = Vector2( -346, 413 )
+transitions = [ "run", "idle", SubResource( 27 ), "idle", "run", SubResource( 28 ), "idle", "jump", SubResource( 29 ), "jump", "fall", SubResource( 30 ), "fall", "run", SubResource( 31 ), "run", "jump", SubResource( 32 ), "fall", "idle", SubResource( 33 ), "wall slide", "idle", SubResource( 34 ), "wall slide", "flip", SubResource( 35 ), "flip", "fall", SubResource( 36 ), "idle", "attack_g_full", SubResource( 37 ), "run", "attack_g_full", SubResource( 38 ), "attack_g_full", "run", SubResource( 39 ), "attack_g_full", "idle", SubResource( 40 ), "fall", "wall slide", SubResource( 41 ), "flip", "wall slide", SubResource( 42 ), "wall slide", "fall", SubResource( 43 ), "run", "run2", SubResource( 44 ), "run2", "run", SubResource( 45 ), "run2", "jump", SubResource( 46 ), "run2", "attack_g_full", SubResource( 47 ), "crouch walk", "jump", SubResource( 48 ), "idle", "crouch", SubResource( 49 ), "crouch", "idle", SubResource( 50 ), "crouch", "crouch walk", SubResource( 51 ), "crouch walk", "crouch", SubResource( 52 ), "crouch", "jump", SubResource( 53 ), "run2", "ground slide", SubResource( 54 ), "ground slide", "idle", SubResource( 55 ), "ground slide", "run", SubResource( 56 ), "ground slide", "flip", SubResource( 57 ), "run", "fall", SubResource( 58 ), "run2", "fall", SubResource( 59 ), "Airdash", "fall", SubResource( 60 ), "fall", "Airdash", SubResource( 61 ), "Airdash", "jump", SubResource( 62 ) ]
+start_node = "idle"
+graph_offset = Vector2( -912.548, 262.716 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=64]
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -338,7 +361,7 @@ runSpeed = 220.0
 texture = ExtResource( 2 )
 vframes = 10
 hframes = 18
-frame = 1
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 3 )
@@ -364,7 +387,6 @@ texture = ExtResource( 3 )
 
 [node name="Sword Hitbox" type="Area2D" parent="."]
 editor/display_folded = true
-visible = false
 position = Vector2( 11, -3 )
 scale = Vector2( 1.5, 1.9 )
 gravity_vec = Vector2( 0, 0 )
@@ -379,21 +401,22 @@ shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 6.0
-anims/attack_g_full = SubResource( 3 )
-anims/crouch = SubResource( 4 )
-"anims/crouch walk" = SubResource( 5 )
-anims/fall = SubResource( 6 )
-anims/flip = SubResource( 7 )
-"anims/ground slide" = SubResource( 8 )
-anims/idle = SubResource( 9 )
-anims/jump = SubResource( 10 )
-anims/run = SubResource( 11 )
-anims/run2 = SubResource( 12 )
-"anims/wall slide" = SubResource( 13 )
+anims/Airdash = SubResource( 3 )
+anims/attack_g_full = SubResource( 4 )
+anims/crouch = SubResource( 5 )
+"anims/crouch walk" = SubResource( 6 )
+anims/fall = SubResource( 7 )
+anims/flip = SubResource( 8 )
+"anims/ground slide" = SubResource( 9 )
+anims/idle = SubResource( 10 )
+anims/jump = SubResource( 11 )
+anims/run = SubResource( 12 )
+anims/run2 = SubResource( 13 )
+"anims/wall slide" = SubResource( 14 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 58 )
+tree_root = SubResource( 63 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 59 )
+parameters/playback = SubResource( 64 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

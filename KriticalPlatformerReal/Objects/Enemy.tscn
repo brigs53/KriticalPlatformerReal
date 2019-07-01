@@ -3,8 +3,6 @@
 [ext_resource path="res://Scripts/e_skeleton.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Sprites/Skeleton Walk.png" type="Texture" id=2]
 
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "enemySkeletonIdle"
 
@@ -28,6 +26,7 @@ tracks/0/keys = {
 extents = Vector2( 7.00839, 13.8117 )
 
 [node name="Enemy" type="KinematicBody2D"]
+editor/display_folded = true
 collision_layer = 8
 script = ExtResource( 1 )
 

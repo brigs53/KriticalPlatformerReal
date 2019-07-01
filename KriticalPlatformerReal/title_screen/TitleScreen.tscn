@@ -51,7 +51,7 @@ margin_top = 50.0
 margin_right = 518.0
 margin_bottom = 110.0
 script = ExtResource( 4 )
-scene_to_load = "res://Scenes/Level1/TestLevel.tscn"
+scene_to_load = "res://Scenes/Level1/TutorialLevel.tscn"
 
 [node name="ContinueButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 5 )]
 margin_top = 130.0
@@ -87,7 +87,7 @@ margin_bottom = 560.0
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 10 )
 text = "Version 1.0.0 alpha
-Randy Kim"
+Randy Kim and Timothy Ding"
 
 [node name="FadeIn" parent="." instance=ExtResource( 11 )]
 visible = false

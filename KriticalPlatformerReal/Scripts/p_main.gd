@@ -9,6 +9,7 @@ func _physics_process(delta):
 	var onFloor = is_on_floor()
 	var onWall = is_on_wall()
 	var move = int(Input.is_action_pressed("ui_right"))-int(Input.is_action_pressed("ui_left"))
+	#Jump Height determined
 	var gravity = Utils.jumpGravity(1.25*jumpHeight, jumpTime)
 
 	#GRAVITY
@@ -30,7 +31,12 @@ func _physics_process(delta):
 					state_machine.travel("idle")
 			if(abs(velocity.x) >= 30 && abs(velocity.x) < 270):
 				state_machine.travel("run")
-			if(abs(velocity.x) >= 270):
+				#abs(velocity.x) >= 270&& - this was placed below changed so you run when you press run
+			if(Input.is_action_pressed("Run")):
+				if(move<0):
+					velocity.x=-500
+				if(move>0):
+					velocity.x=500
 				state_machine.travel("run2")
 		else:
 			if(abs(velocity.x) < 10):
@@ -49,7 +55,7 @@ func _physics_process(delta):
 	if(state_machine.get_current_node()=="idle"||state_machine.get_current_node()=="run"||state_machine.get_current_node()=="run2"):
 		velocity.x = lerp(velocity.x,move*275,.2)
 		if Input.is_action_just_pressed("jump"):
-			velocity.y = Utils.jumpVelocity(gravity,.75*jumpTime)
+			velocity.y = Utils.jumpVelocity(gravity,1*jumpTime)
 			state_machine.travel("jump")
 		if(Input.is_action_just_pressed("attack")):
 				state_machine.travel("attack_g_full")

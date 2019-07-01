@@ -21,22 +21,23 @@ func _physics_process(delta):
 #movement
 	if not player:
 		return
-	
-	if global_position.x < player.global_position.x - 15:
-		if(velocity.x > 0):
-			$Sprite.flip_h = false
-		move += 1
-		$AnimationPlayer.play("enemySkeletonWalk")
+	if abs(global_position.y- player.global_position.y)<20:
+		if abs(global_position.x - player.global_position.y)>700:
+			if global_position.x < player.global_position.x - 15:
+				if(velocity.x > 0):
+					$Sprite.flip_h = false
+				move += 1
+				$AnimationPlayer.play("enemySkeletonWalk")
 		
-	if global_position.x > player.global_position.x - 20:
-		if velocity.x < 0:
-			spriteFacingRight = false
-		else:
-			spriteFacingRight = true
-		if !spriteFacingRight:
-			$Sprite.flip_h = true
-		move -= 1
-		$AnimationPlayer.play("enemySkeletonWalk")
+			if global_position.x > player.global_position.x - 20:
+				if velocity.x < 0:
+					spriteFacingRight = false
+				else:
+					spriteFacingRight = true
+				if !spriteFacingRight:
+					$Sprite.flip_h = true
+				move -= 1
+				$AnimationPlayer.play("enemySkeletonWalk")
 		
 	velocity.x = move * runSpeed
 	# -y is up, +y is down

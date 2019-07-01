@@ -34,9 +34,9 @@ func _physics_process(delta):
 				#abs(velocity.x) >= 270&& - this was placed below changed so you run when you press run
 			if(Input.is_action_pressed("Run")):
 				if(move<0):
-					velocity.x=-500
+					velocity.x=-400
 				if(move>0):
-					velocity.x=500
+					velocity.x=400
 				state_machine.travel("run2")
 		else:
 			if(abs(velocity.x) < 10):

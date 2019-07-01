@@ -36,7 +36,7 @@ func _physics_process(delta):
 					spriteFacingRight = true
 				if !spriteFacingRight:
 					$Sprite.flip_h = true
-				move -= 1
+				move -= .8
 				$AnimationPlayer.play("enemySkeletonWalk")
 		
 	velocity.x = move * runSpeed

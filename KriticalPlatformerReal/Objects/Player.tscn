@@ -1,7 +1,7 @@
 [gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Scripts/p_main.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Sprites/adventurer.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Sprites/Player Spritesheet/NewV106.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Sprites/heart.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Hitbox.gd" type="Script" id=4]
 
@@ -139,8 +139,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=11]
-length = 0.24
-loop = true
+length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -148,10 +147,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12, 0.18 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 14, 15, 16, 17 ]
+"values": [ 15, 16, 17, 18 ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -347,7 +346,7 @@ states/run2/position = Vector2( 7.82202, 586 )
 "states/wall slide/position" = Vector2( -346, 413 )
 transitions = [ "run", "idle", SubResource( 27 ), "idle", "run", SubResource( 28 ), "idle", "jump", SubResource( 29 ), "jump", "fall", SubResource( 30 ), "fall", "run", SubResource( 31 ), "run", "jump", SubResource( 32 ), "fall", "idle", SubResource( 33 ), "wall slide", "idle", SubResource( 34 ), "wall slide", "flip", SubResource( 35 ), "flip", "fall", SubResource( 36 ), "idle", "attack_g_full", SubResource( 37 ), "run", "attack_g_full", SubResource( 38 ), "attack_g_full", "run", SubResource( 39 ), "attack_g_full", "idle", SubResource( 40 ), "fall", "wall slide", SubResource( 41 ), "flip", "wall slide", SubResource( 42 ), "wall slide", "fall", SubResource( 43 ), "run", "run2", SubResource( 44 ), "run2", "run", SubResource( 45 ), "run2", "jump", SubResource( 46 ), "run2", "attack_g_full", SubResource( 47 ), "crouch walk", "jump", SubResource( 48 ), "idle", "crouch", SubResource( 49 ), "crouch", "idle", SubResource( 50 ), "crouch", "crouch walk", SubResource( 51 ), "crouch walk", "crouch", SubResource( 52 ), "crouch", "jump", SubResource( 53 ), "run2", "ground slide", SubResource( 54 ), "ground slide", "idle", SubResource( 55 ), "ground slide", "run", SubResource( 56 ), "ground slide", "flip", SubResource( 57 ), "run", "fall", SubResource( 58 ), "run2", "fall", SubResource( 59 ), "Airdash", "fall", SubResource( 60 ), "fall", "Airdash", SubResource( 61 ), "Airdash", "jump", SubResource( 62 ) ]
 start_node = "idle"
-graph_offset = Vector2( -912.548, 262.716 )
+graph_offset = Vector2( -912.548, 354.732 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=64]
 
@@ -361,9 +360,10 @@ runSpeed = 220.0
 texture = ExtResource( 2 )
 vframes = 10
 hframes = 18
-frame = 2
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, 3 )
 shape = SubResource( 1 )
 
@@ -387,6 +387,7 @@ texture = ExtResource( 3 )
 
 [node name="Sword Hitbox" type="Area2D" parent="."]
 editor/display_folded = true
+visible = false
 position = Vector2( 11, -3 )
 scale = Vector2( 1.5, 1.9 )
 gravity_vec = Vector2( 0, 0 )

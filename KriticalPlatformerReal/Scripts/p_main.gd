@@ -117,6 +117,10 @@ func _physics_process(delta):
 	if(state_machine.get_current_node() == "flip"):
 		velocity.x = lerp(velocity.x,move*250,.05)
 	
+	#RESTART
+	if Input.is_action_pressed("restart"):
+		get_tree().reload_current_scene()
+	
 	#QUIT
 	if Input.is_action_pressed("quit"):
 		get_tree().quit()

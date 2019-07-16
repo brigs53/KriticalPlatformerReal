@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/29301__junggle__btn121.wav-6de910b29d409deb03053e4ab32b5e95.sample"
+
+[deps]
+
+source_file="res://Music/Sound Effects/29301__junggle__btn121.wav"
+dest_files=[ "res://.import/29301__junggle__btn121.wav-6de910b29d409deb03053e4ab32b5e95.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

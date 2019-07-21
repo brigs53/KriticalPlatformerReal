@@ -8,7 +8,7 @@ func _ready():
 	pass
 	
 func NewGame():
-	get_tree().change_scene("res://Scenes/Level1/TutorialLevel.tscn")
+	get_tree().change_scene("res://Scenes/Level1/TestingLevel1.tscn")
 
 func Continue():
 	get_tree().change_scene("res://Scenes/Level1/TutorialLevel.tscn")

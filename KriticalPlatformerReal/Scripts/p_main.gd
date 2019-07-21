@@ -10,7 +10,7 @@ func _physics_process(delta):
 	var onWall = is_on_wall()
 	var move = int(Input.is_action_pressed("ui_right"))-int(Input.is_action_pressed("ui_left"))
 	#Jump Height determined
-	var gravity = Utils.jumpGravity(1.25*jumpHeight, jumpTime)
+	var gravity = Utils.jumpGravity(1*jumpHeight, jumpTime)
 
 	#GRAVITY
 	#falling speed cap included
@@ -45,20 +45,25 @@ func _physics_process(delta):
 			if(abs(velocity.x) >= 30):
 				state_machine.travel("crouch walk")
 	elif(onWall):
+		if(velocity.y>-240):
 			state_machine.travel("wall slide")
+		
 	else:
 		if(velocity.y > 10):
 			state_machine.travel("fall")
 
 	#IDLE-RUN-SPRINT
-	#CAN: JUMP, ATTACK
+	#CAN: JUMP, GROUND ATTACK (NORMAL, UP)
 	if(state_machine.get_current_node()=="idle"||state_machine.get_current_node()=="run"||state_machine.get_current_node()=="run2"):
-		velocity.x = lerp(velocity.x,move*275,.2)
+		velocity.x = lerp(velocity.x,move*250,.2)
 		if Input.is_action_just_pressed("jump"):
-			velocity.y = Utils.jumpVelocity(gravity,1*jumpTime)
+			velocity.y = Utils.jumpVelocity(gravity,1.2*jumpTime)
 			state_machine.travel("jump")
 		if(Input.is_action_just_pressed("attack")):
-				state_machine.travel("attack_g_full")
+				if(Input.is_action_pressed("ui_up")):
+					state_machine.travel("attack_g_up")
+				else:
+					state_machine.travel("attack_g_1")
 
 	#IDLE-RUN
 	#CAN: CROUCH
@@ -77,7 +82,7 @@ func _physics_process(delta):
 	if(state_machine.get_current_node()=="crouch"||state_machine.get_current_node()=="crouch walk"):
 		velocity.x = lerp(velocity.x,move*100,.3)
 		if Input.is_action_just_pressed("jump"):
-			velocity.y = Utils.jumpVelocity(gravity,.8*jumpTime)
+			velocity.y = Utils.jumpVelocity(gravity,1*jumpTime)
 			state_machine.travel("jump")
 
 	#GROUND SLIDE
@@ -90,15 +95,22 @@ func _physics_process(delta):
 
 	#ATTACK 
 	#CAN: MOVE(HINDERED)
-	if(state_machine.get_current_node() == "attack_g_full"):
+	if(state_machine.get_current_node() == "attack_g_1" || state_machine.get_current_node() == "attack_g_up"):
 		velocity.x = lerp(velocity.x,move*120,.25)
 
 	#JUMP-FALL 
 	#CAN: MOVE(HINDERED), fastfall
 	if(state_machine.get_current_node() == "jump" || state_machine.get_current_node() == "fall"):
 		velocity.x = lerp(velocity.x,move*250,.1)
-		if Input.is_action_just_pressed("ui_down"):
-			velocity.y = max(velocity.y,100)
+#		if Input.is_action_just_pressed("ui_down"):
+#			velocity.y = max(velocity.y,100)
+		if Input.is_action_just_pressed("attack"):
+			if Input.is_action_pressed("ui_up"):
+				state_machine.travel("attack_a_up")
+			elif Input.is_action_pressed("ui_down"):
+				state_machine.travel("attack_a_down")
+			else:
+				state_machine.travel("attack_a_1")
 #
 	#WALL SLIDE
 	#CAN: FLIP, fastslide

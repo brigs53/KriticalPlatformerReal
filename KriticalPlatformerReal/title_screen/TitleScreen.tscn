@@ -67,9 +67,9 @@ alignment = 1
 
 [node name="NewGameButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 4 )]
 visible = false
-margin_top = 43.0
+margin_top = 19.0
 margin_right = 518.0
-margin_bottom = 103.0
+margin_bottom = 79.0
 
 [node name="ContinueButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 5 )]
 visible = false

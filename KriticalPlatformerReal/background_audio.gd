@@ -8,8 +8,8 @@ extends Node
 func _ready():
 	var music = AudioStreamPlayer.new()
 	add_child(music)
-	var stream = load("res://Music/Background Music/C418 - Biome Fest (Minecraft Volume Beta).ogg")
+	var stream = load("res://Music/Background Music/Chrono Trigger - Main Theme (Orchestral Remix).ogg")
 	music.set_stream(stream)
-	music.volume_db = 1
+	music.volume_db = -25
 	music.pitch_scale = 1
 	music.play()

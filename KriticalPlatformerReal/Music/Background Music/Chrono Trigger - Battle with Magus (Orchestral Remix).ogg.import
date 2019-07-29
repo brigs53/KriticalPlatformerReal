@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Chrono Trigger - Battle with Magus (Orchestral Remix).ogg-61edb495899c07e035bd32e4ea72103c.oggstr"
+
+[deps]
+
+source_file="res://Music/Background Music/Chrono Trigger - Battle with Magus (Orchestral Remix).ogg"
+dest_files=[ "res://.import/Chrono Trigger - Battle with Magus (Orchestral Remix).ogg-61edb495899c07e035bd32e4ea72103c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

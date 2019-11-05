@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Resources/Timothys Shitty Stuff/Spikes.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Timothys Shitty Stuff/spike.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 14.6204, 4.76519 )
+
+[node name="Spikes" type="Area2D"]
+position = Vector2( -2450.82, -25.362 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -6.06396, 1.41855 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -5.94604, -6.10344 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}

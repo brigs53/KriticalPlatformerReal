@@ -1,0 +1,164 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objects/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/SpiderBoss.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Resources/Environments/sky.png" type="Texture" id=4]
+[ext_resource path="res://Resources/Environments/AdventurerMap.tres" type="TileSet" id=5]
+[ext_resource path="res://Resources/Environments/CloudsFront.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/ScrollingBackground.gd" type="Script" id=7]
+[ext_resource path="res://Resources/Environments/clouds.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Environments/far-grounds.png" type="Texture" id=9]
+[ext_resource path="res://Shaders/fog.shader" type="Shader" id=10]
+[ext_resource path="res://icon.png" type="Texture" id=11]
+[ext_resource path="res://Scripts/Pause.gd" type="Script" id=12]
+[ext_resource path="res://Fonts/BebasNeue-Regular.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Scripts/RichTextLabel.gd" type="Script" id=14]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 10 )
+shader_param/color = Color( 0.33, 0.15, 0.82, 0.5 )
+shader_param/screenDim = Vector2( 640, 360 )
+shader_param/octaves = 4
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+font_data = ExtResource( 13 )
+
+[node name="Level1" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 81.2903, -281.787 )
+
+[node name="Camera2D" type="Camera2D" parent="Player" groups=[
+"Camera",
+]]
+position = Vector2( 5.0105, 5.0105 )
+current = true
+
+[node name="skeleton" parent="." instance=ExtResource( 2 )]
+position = Vector2( -244.38, -103.304 )
+
+[node name="spiderBoss" parent="." instance=ExtResource( 3 )]
+position = Vector2( -105.593, -307.738 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
+layer = -5
+
+[node name="sky" type="Sprite" parent="CanvasLayer"]
+scale = Vector2( 1, 2 )
+texture = ExtResource( 4 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 720 )
+
+[node name="ground" type="TileMap" parent="."]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -917525, 3, 0, -917524, 3, 1, -917523, 3, 1, -917522, 3, 1, -917521, 3, 1, -917520, 3, 1, -917519, 3, 1, -917518, 3, 1, -917517, 3, 1, -917516, 3, 1, -917515, 3, 1, -917514, 3, 1, -917513, 3, 1, -917512, 3, 1, -917511, 3, 1, -917510, 3, 2, -983037, 3, 0, -983036, 3, 1, -983035, 3, 1, -983034, 3, 1, -983033, 3, 1, -983032, 3, 1, -983031, 3, 1, -983030, 3, 1, -983029, 3, 1, -983028, 3, 1, -983027, 3, 1, -983026, 3, 2, -851989, 3, 131072, -851988, 3, 131073, -851987, 3, 131073, -851986, 3, 131073, -851985, 3, 131073, -851984, 3, 131073, -851983, 3, 131073, -851982, 3, 131073, -851981, 3, 131073, -851980, 3, 131073, -851979, 3, 131073, -851978, 3, 131073, -851977, 3, 131073, -851976, 3, 5, -851975, 3, 65539, -851974, 3, 65538, -917501, 3, 131072, -917500, 3, 131073, -917499, 3, 131073, -917498, 3, 131073, -917497, 3, 131073, -917496, 3, 131073, -917495, 3, 131073, -917494, 3, 131073, -917493, 3, 131073, -917492, 3, 131073, -917491, 3, 131073, -917490, 3, 131074, -786440, 3, 131072, -786439, 3, 5, -786438, 3, 65538, -786435, 3, 0, -786434, 3, 2, -851967, 3, 0, -851966, 3, 2, -720903, 3, 131072, -720902, 3, 131074, -720899, 3, 65536, -720898, 3, 65538, -786431, 3, 65536, -786430, 3, 65538, -655363, 3, 65536, -655362, 3, 65538, -720895, 3, 65536, -720894, 3, 65538, -589855, 3, 0, -589854, 3, 1, -589853, 3, 1, -589852, 3, 1, -589851, 3, 1, -589850, 3, 1, -589849, 3, 1, -589848, 3, 2, -589827, 3, 65536, -589826, 3, 65538, -655359, 3, 65536, -655358, 3, 65538, -524319, 3, 131072, -524318, 3, 131073, -524317, 3, 131073, -524316, 3, 131073, -524315, 3, 131073, -524314, 3, 131073, -524313, 3, 131073, -524312, 3, 131074, -524291, 3, 65536, -524290, 3, 65538, -589823, 3, 65536, -589822, 3, 65538, -458774, 3, 0, -458773, 3, 2, -458755, 3, 65536, -458754, 3, 65538, -524287, 3, 65536, -524286, 3, 65538, -393238, 3, 131072, -393237, 3, 131074, -393219, 3, 65536, -393218, 3, 65538, -458751, 3, 65536, -458750, 3, 65538, -327699, 3, 0, -327698, 3, 2, -327683, 3, 131072, -327682, 3, 131074, -393215, 3, 65536, -393214, 3, 65538, -262163, 3, 131072, -262162, 3, 131074, -327679, 3, 65536, -327678, 3, 65538, -262143, 3, 65536, -262142, 3, 65538, -196607, 3, 65536, -196606, 3, 65538, -65560, 3, 0, -65559, 3, 3, -65558, 3, 3, -65557, 3, 1, -65556, 3, 3, -65555, 3, 1, -65554, 3, 3, -65553, 3, 3, -65552, 3, 1, -65551, 3, 1, -65550, 3, 1, -65549, 3, 3, -65548, 3, 1, -65547, 3, 1, -65546, 3, 1, -65545, 3, 3, -65544, 3, 1, -65543, 3, 3, -65542, 3, 3, -65541, 3, 1, -65540, 3, 3, -65539, 3, 3, -65538, 3, 1, -65537, 3, 3, -131072, 3, 1, -131071, 3, 6, -131070, 3, 65538, -24, 3, 65536, -23, 3, 65539, -22, 3, 65537, -21, 3, 65537, -20, 3, 65539, -19, 3, 65537, -18, 3, 65539, -17, 3, 65537, -16, 3, 65539, -15, 3, 65539, -14, 3, 65537, -13, 3, 65539, -12, 3, 65539, -11, 3, 65537, -10, 3, 65539, -9, 3, 65539, -8, 3, 65537, -7, 3, 65539, -6, 3, 65539, -5, 3, 65537, -4, 3, 65539, -3, 3, 65537, -2, 3, 65537, -1, 3, 65539, -65536, 3, 65539, -65535, 3, 65539, -65534, 3, 65538, 65512, 3, 65536, 65513, 3, 65537, 65514, 3, 65537, 65515, 3, 65539, 65516, 3, 65539, 65517, 3, 65537, 65518, 3, 65537, 65519, 3, 65539, 65520, 3, 65539, 65521, 3, 65537, 65522, 3, 65537, 65523, 3, 65539, 65524, 3, 65539, 65525, 3, 65539, 65526, 3, 65539, 65527, 3, 65539, 65528, 3, 65539, 65529, 3, 65539, 65530, 3, 65537, 65531, 3, 65539, 65532, 3, 65537, 65533, 3, 65537, 65534, 3, 65539, 65535, 3, 65539, 0, 3, 65539, 1, 3, 65539, 2, 3, 65538, 131048, 3, 65536, 131049, 3, 65537, 131050, 3, 65537, 131051, 3, 65537, 131052, 3, 65539, 131053, 3, 65539, 131054, 3, 65539, 131055, 3, 65539, 131056, 3, 65537, 131057, 3, 65539, 131058, 3, 65539, 131059, 3, 65539, 131060, 3, 65539, 131061, 3, 65539, 131062, 3, 65539, 131063, 3, 65537, 131064, 3, 65539, 131065, 3, 65537, 131066, 3, 65539, 131067, 3, 65539, 131068, 3, 65539, 131069, 3, 65539, 131070, 3, 65537, 131071, 3, 65539, 65536, 3, 65537, 65537, 3, 65537, 65538, 3, 65538, 196584, 3, 131072, 196585, 3, 131073, 196586, 3, 131073, 196587, 3, 131073, 196588, 3, 131073, 196589, 3, 131073, 196590, 3, 131073, 196591, 3, 131073, 196592, 3, 131073, 196593, 3, 131073, 196594, 3, 131073, 196595, 3, 131073, 196596, 3, 131073, 196597, 3, 131073, 196598, 3, 131073, 196599, 3, 131073, 196600, 3, 131073, 196601, 3, 131073, 196602, 3, 131073, 196603, 3, 131073, 196604, 3, 131073, 196605, 3, 131073, 196606, 3, 131073, 196607, 3, 131073, 131072, 3, 131073, 131073, 3, 131073, 131074, 3, 131074 )
+
+[node name="ornaments" type="TileMap" parent="."]
+z_index = 1
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -983057, 8, 0, -983056, 8, 0, -983055, 8, 0, -983054, 8, 0, -983053, 8, 0, -983052, 8, 0, -983051, 8, 0, -983050, 8, 0, -917525, 0, 0, -917524, 2, 0, -917523, 2, 0, -917522, 2, 0, -917521, 2, 0, -917520, 2, 0, -917519, 2, 0, -917518, 2, 0, -917517, 2, 0, -917516, 2, 0, -917515, 2, 0, -917514, 2, 0, -917513, 2, 0, -917512, 2, 0, -917511, 2, 0, -917510, 536870912, 0, -983037, 0, 0, -983036, 2, 0, -983035, 2, 0, -983034, 2, 0, -983033, 2, 0, -983032, 2, 0, -983031, 2, 0, -983030, 2, 0, -983029, 2, 0, -983028, 2, 0, -983027, 2, 0, -983026, 536870912, 0, -589855, 0, 0, -589854, 2, 0, -589853, 2, 0, -589852, 2, 0, -589851, 2, 0, -589850, 2, 0, -589849, 2, 0, -589848, 536870912, 0, -65560, 0, 0, -65559, 2, 0, -65558, 2, 0, -65557, 2, 0, -65556, 2, 0, -65555, 2, 0, -65554, 2, 0, -65553, 2, 0, -65552, 2, 0, -65551, 2, 0, -65550, 2, 0, -65549, 2, 0, -65548, 2, 0, -65547, 2, 0, -65546, 2, 0, -65545, 2, 0, -65544, 2, 0, -65543, 2, 0, -65542, 2, 0, -65541, 2, 0, -65540, 2, 0, -65539, 2, 0, -65538, 2, 0, -65537, 2, 0, -131072, 536870912, 0 )
+
+[node name="BG" type="ParallaxBackground" parent="."]
+offset = Vector2( -200, -100 )
+transform = Transform2D( 1, 0, 0, 1, -200, -100 )
+scroll_offset = Vector2( 20, 20 )
+
+[node name="BG0" type="ParallaxLayer" parent="BG"]
+motion_scale = Vector2( 0.4, 0.7 )
+
+[node name="Clouds" type="Sprite" parent="BG/BG0"]
+position = Vector2( 1, 0 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 4964.78, 0, 2560, 360 )
+script = ExtResource( 7 )
+scrollSpeed = Vector2( 60, 0 )
+
+[node name="BG1" type="ParallaxLayer" parent="BG"]
+motion_scale = Vector2( 0.5, 0.8 )
+
+[node name="clouds" type="Sprite" parent="BG/BG1"]
+position = Vector2( 0.565521, 0 )
+texture = ExtResource( 8 )
+offset = Vector2( 0, 96 )
+region_enabled = true
+region_rect = Rect2( 2482.39, 0, 1280, 236 )
+script = ExtResource( 7 )
+scrollSpeed = Vector2( 30, 0 )
+
+[node name="BG2" type="ParallaxLayer" parent="BG"]
+motion_scale = Vector2( 0.9, 0.9 )
+
+[node name="far-grounds" type="Sprite" parent="BG/BG2"]
+position = Vector2( 0, 90 )
+texture = ExtResource( 9 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 110 )
+
+[node name="FG" type="ParallaxBackground" parent="."]
+editor/display_folded = true
+layer = 1
+offset = Vector2( -200, 0 )
+transform = Transform2D( 1, 0, 0, 1, -200, 0 )
+
+[node name="fog" type="Sprite" parent="FG"]
+visible = false
+material = SubResource( 1 )
+position = Vector2( 200, 0 )
+texture = ExtResource( 11 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 720 )
+script = ExtResource( 7 )
+scrollSpeed = Vector2( 100, 0 )
+parallaxFactor = Vector2( 1.1, 1.1 )
+isParallax = true
+
+[node name="FG1" type="ParallaxLayer" parent="FG"]
+visible = false
+position = Vector2( 0, -32 )
+z_index = -1
+motion_scale = Vector2( 1.1, 1.1 )
+
+[node name="clouds" type="Sprite" parent="FG/FG1"]
+visible = false
+position = Vector2( 0.22934, 80 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 16549.4, 0, 1280, 236 )
+script = ExtResource( 7 )
+
+[node name="PauseCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause" type="Control" parent="PauseCanvasLayer"]
+pause_mode = 2
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 12 )
+
+[node name="BlackOverlay" type="ColorRect" parent="PauseCanvasLayer/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1240.0
+margin_bottom = 680.0
+color = Color( 0, 0, 0, 0.352941 )
+
+[node name="PauseTextCanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="PauseText" type="RichTextLabel" parent="PauseTextCanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 223.0
+custom_fonts/normal_font = SubResource( 2 )
+text = "Pause"
+script = ExtResource( 14 )

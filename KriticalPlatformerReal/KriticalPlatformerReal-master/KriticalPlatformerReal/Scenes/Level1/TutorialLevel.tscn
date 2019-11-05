@@ -1,0 +1,249 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objects/SpiderBoss.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/Environments/sky.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Timothys Shitty Stuff/SceneChanger.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Resources/Environments/AdventurerMap.tres" type="TileSet" id=5]
+[ext_resource path="res://Resources/Environments/CloudsFront.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/ScrollingBackground.gd" type="Script" id=7]
+[ext_resource path="res://Resources/Environments/clouds.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Environments/far-grounds.png" type="Texture" id=9]
+[ext_resource path="res://Shaders/fog.shader" type="Shader" id=10]
+[ext_resource path="res://icon.png" type="Texture" id=11]
+[ext_resource path="res://Scripts/Pause.gd" type="Script" id=12]
+[ext_resource path="res://Fonts/BebasNeue-Regular.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Scripts/RichTextLabel.gd" type="Script" id=14]
+[ext_resource path="res://Resources/Timothys Shitty Stuff/KillFloor.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Resources/Timothys Shitty Stuff/Spikes.tscn" type="PackedScene" id=16]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 10 )
+shader_param/color = Color( 0.33, 0.15, 0.82, 0.5 )
+shader_param/screenDim = Vector2( 640, 360 )
+shader_param/octaves = 4
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+font_data = ExtResource( 13 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 41.931, 1.67838 )
+
+[node name="Level1" type="Node2D"]
+position = Vector2( 50.3506, 70.4909 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2832.89, -55.7258 )
+
+[node name="Camera2D" type="Camera2D" parent="Player" groups=[
+"Camera",
+]]
+position = Vector2( 5.0105, 5.0105 )
+current = true
+
+[node name="spiderBoss" parent="." instance=ExtResource( 2 )]
+visible = false
+position = Vector2( -105.593, -307.738 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
+layer = -5
+
+[node name="sky" type="Sprite" parent="CanvasLayer"]
+scale = Vector2( 1, 2 )
+texture = ExtResource( 3 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 720 )
+
+[node name="SceneChanger" parent="." instance=ExtResource( 4 )]
+position = Vector2( -344.351, -221.991 )
+
+[node name="ground" type="TileMap" parent="."]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -1179829, 3, 0, -1179828, 3, 3, -1179827, 3, 1, -1179826, 3, 3, -1179825, 3, 3, -1179824, 3, 1, -1179823, 3, 1, -1179822, 3, 1, -1179821, 3, 3, -1179820, 3, 1, -1179819, 3, 3, -1179818, 3, 3, -1179817, 3, 1, -1179816, 3, 3, -1179815, 3, 1, -1179814, 3, 1, -1179813, 3, 3, -1179812, 3, 1, -1179811, 3, 2, -1114293, 3, 65536, -1114292, 3, 4, -1114291, 3, 131073, -1114290, 3, 131073, -1114289, 3, 131073, -1114288, 3, 131073, -1114287, 3, 131073, -1114286, 3, 131073, -1114285, 3, 131073, -1114284, 3, 131073, -1114283, 3, 131073, -1114282, 3, 131073, -1114281, 3, 131073, -1114280, 3, 131073, -1114279, 3, 131073, -1114278, 3, 131073, -1114277, 3, 131073, -1114276, 3, 131073, -1114275, 3, 131074, -1114193, 3, 0, -1114192, 3, 2, -1048757, 3, 65536, -1048756, 3, 65538, -1048657, 3, 65536, -1048656, 3, 65538, -983221, 3, 65536, -983220, 3, 65538, -983121, 3, 65536, -983120, 3, 65538, -917685, 3, 65536, -917684, 3, 65538, -917585, 3, 65536, -917584, 3, 65538, -852149, 3, 65536, -852148, 3, 65538, -852049, 3, 65536, -852048, 3, 65538, -786613, 3, 65536, -786612, 3, 65538, -786513, 3, 65536, -786512, 3, 65538, -721077, 3, 65536, -721076, 3, 65538, -720977, 3, 65536, -720976, 3, 65538, -720972, 3, 0, -720971, 3, 1, -720970, 3, 1, -720969, 3, 1, -720968, 3, 1, -720967, 3, 1, -720966, 3, 3, -720965, 3, 3, -720964, 3, 1, -720963, 3, 1, -720962, 3, 3, -720961, 3, 3, -720960, 3, 1, -720959, 3, 2, -720944, 3, 0, -720943, 3, 1, -720942, 3, 3, -720941, 3, 3, -720940, 3, 1, -720939, 3, 1, -720938, 3, 3, -720937, 3, 1, -720936, 3, 3, -720935, 3, 3, -720934, 3, 3, -720933, 3, 1, -720932, 3, 1, -720931, 3, 1, -720930, 3, 3, -720929, 3, 3, -720928, 3, 3, -720927, 3, 1, -720926, 3, 3, -720925, 3, 1, -720924, 3, 1, -720923, 3, 1, -720922, 3, 3, -720921, 3, 1, -720920, 3, 3, -720919, 3, 1, -720918, 3, 1, -720917, 3, 1, -720916, 3, 2, -655541, 3, 65536, -655540, 3, 65538, -655441, 3, 65536, -655440, 3, 65538, -655436, 3, 65536, -655435, 3, 4, -655434, 3, 131073, -655433, 3, 131073, -655432, 3, 131073, -655431, 3, 131073, -655430, 3, 131073, -655429, 3, 131073, -655428, 3, 131073, -655427, 3, 131073, -655426, 3, 131073, -655425, 3, 131073, -655424, 3, 131073, -655423, 3, 131074, -655408, 3, 131072, -655407, 3, 131073, -655406, 3, 131073, -655405, 3, 131073, -655404, 3, 131073, -655403, 3, 131073, -655402, 3, 131073, -655401, 3, 131073, -655400, 3, 131073, -655399, 3, 131073, -655398, 3, 131073, -655397, 3, 131073, -655396, 3, 131073, -655395, 3, 131073, -655394, 3, 131073, -655393, 3, 131073, -655392, 3, 131073, -655391, 3, 131073, -655390, 3, 131073, -655389, 3, 131073, -655388, 3, 131073, -655387, 3, 131073, -655386, 3, 131073, -655385, 3, 131073, -655384, 3, 131073, -655383, 3, 131073, -655382, 3, 131073, -655381, 3, 131073, -655380, 3, 131074, -590005, 3, 65536, -590004, 3, 65538, -589905, 3, 65536, -589904, 3, 65538, -589900, 3, 65536, -589899, 3, 65538, -524469, 3, 65536, -524468, 3, 65538, -524369, 3, 65536, -524368, 3, 65538, -524364, 3, 65536, -524363, 3, 65538, -458933, 3, 65536, -458932, 3, 65538, -458833, 3, 65536, -458832, 3, 65538, -458828, 3, 65536, -458827, 3, 65538, -393397, 3, 65536, -393396, 3, 65538, -393297, 3, 65536, -393296, 3, 65538, -393292, 3, 65536, -393291, 3, 65538, -327861, 3, 65536, -327860, 3, 65538, -327761, 3, 65536, -327760, 3, 65538, -327756, 3, 65536, -327755, 3, 65538, -262325, 3, 65536, -262324, 3, 65538, -262225, 3, 131072, -262224, 3, 131074, -262220, 3, 65536, -262219, 3, 65538, -196789, 3, 65536, -196788, 3, 65538, -196765, 3, 0, -196764, 3, 3, -196763, 3, 3, -196762, 3, 2, -196684, 3, 65536, -196683, 3, 65538, -131253, 3, 65536, -131252, 3, 65538, -131229, 3, 65536, -131228, 3, 65539, -131227, 3, 65537, -131226, 3, 65538, -131148, 3, 65536, -131147, 3, 65538, -65717, 3, 65536, -65716, 3, 65540, -65715, 3, 3, -65714, 3, 1, -65713, 3, 3, -65712, 3, 3, -65711, 3, 1, -65710, 3, 1, -65709, 3, 3, -65708, 3, 3, -65707, 3, 1, -65706, 3, 3, -65705, 3, 3, -65704, 3, 1, -65703, 3, 1, -65702, 3, 3, -65701, 3, 1, -65700, 3, 3, -65699, 3, 1, -65698, 3, 3, -65697, 3, 1, -65696, 3, 1, -65695, 3, 3, -65694, 3, 3, -65693, 3, 6, -65692, 3, 65539, -65691, 3, 65537, -65690, 3, 65540, -65689, 3, 1, -65688, 3, 3, -65687, 3, 1, -65686, 3, 3, -65685, 3, 3, -65684, 3, 3, -65683, 3, 3, -65682, 3, 3, -65681, 3, 3, -65680, 3, 3, -65679, 3, 3, -65678, 3, 3, -65677, 3, 1, -65676, 3, 2, -65673, 3, 0, -65672, 3, 1, -65671, 3, 1, -65670, 3, 3, -65669, 3, 1, -65668, 3, 1, -65667, 3, 2, -65663, 3, 0, -65662, 3, 3, -65661, 3, 3, -65660, 3, 3, -65659, 3, 1, -65658, 3, 2, -65653, 3, 0, -65652, 3, 3, -65651, 3, 3, -65650, 3, 3, -65649, 3, 3, -65648, 3, 2, -65645, 3, 0, -65644, 3, 3, -65643, 3, 3, -65642, 3, 1, -65641, 3, 2, -65638, 3, 0, -65637, 3, 1, -65636, 3, 3, -65635, 3, 1, -65634, 3, 2, -65612, 3, 65536, -65611, 3, 65538, -181, 3, 131072, -180, 3, 5, -179, 3, 65539, -178, 3, 65539, -177, 3, 65539, -176, 3, 65537, -175, 3, 65539, -174, 3, 65539, -173, 3, 65539, -172, 3, 65537, -171, 3, 65537, -170, 3, 65537, -169, 3, 65539, -168, 3, 65539, -167, 3, 65537, -166, 3, 65537, -165, 3, 65539, -164, 3, 65539, -163, 3, 65539, -162, 3, 65539, -161, 3, 65537, -160, 3, 65539, -159, 3, 65537, -158, 3, 65537, -157, 3, 65537, -156, 3, 65539, -155, 3, 65539, -154, 3, 65539, -153, 3, 65539, -152, 3, 65539, -151, 3, 65539, -150, 3, 65537, -149, 3, 65539, -148, 3, 65539, -147, 3, 65539, -146, 3, 65539, -145, 3, 65537, -144, 3, 65539, -143, 3, 65539, -142, 3, 65539, -141, 3, 65539, -140, 3, 65538, -137, 3, 65536, -136, 3, 65539, -135, 3, 65539, -134, 3, 65539, -133, 3, 65537, -132, 3, 65539, -131, 3, 65538, -127, 3, 65536, -126, 3, 65539, -125, 3, 65537, -124, 3, 65537, -123, 3, 65537, -122, 3, 65538, -117, 3, 65536, -116, 3, 65539, -115, 3, 65539, -114, 3, 65537, -113, 3, 65539, -112, 3, 65538, -109, 3, 65536, -108, 3, 65539, -107, 3, 65537, -106, 3, 65539, -105, 3, 65538, -102, 3, 65536, -101, 3, 65537, -100, 3, 65539, -99, 3, 65539, -98, 3, 65538, -94, 3, 0, -93, 3, 1, -92, 3, 1, -91, 3, 1, -90, 3, 3, -89, 3, 3, -88, 3, 3, -87, 3, 3, -86, 3, 1, -85, 3, 3, -84, 3, 1, -83, 3, 3, -82, 3, 3, -81, 3, 1, -80, 3, 3, -79, 3, 1, -78, 3, 3, -77, 3, 1, -76, 3, 6, -75, 3, 65538, 65356, 3, 131072, 65357, 3, 131073, 65358, 3, 131073, 65359, 3, 131073, 65360, 3, 131073, 65361, 3, 131073, 65362, 3, 131073, 65363, 3, 131073, 65364, 3, 131073, 65365, 3, 131073, 65366, 3, 131073, 65367, 3, 131073, 65368, 3, 131073, 65369, 3, 131073, 65370, 3, 131073, 65371, 3, 131073, 65372, 3, 131073, 65373, 3, 131073, 65374, 3, 131073, 65375, 3, 131073, 65376, 3, 131073, 65377, 3, 131073, 65378, 3, 131073, 65379, 3, 131073, 65380, 3, 131073, 65381, 3, 131073, 65382, 3, 131073, 65383, 3, 131073, 65384, 3, 131073, 65385, 3, 131073, 65386, 3, 131073, 65387, 3, 131073, 65388, 3, 131073, 65389, 3, 131073, 65390, 3, 131073, 65391, 3, 131073, 65392, 3, 131073, 65393, 3, 5, 65394, 3, 65537, 65395, 3, 65539, 65396, 3, 65538, 65399, 3, 65536, 65400, 3, 65539, 65401, 3, 65539, 65402, 3, 65537, 65403, 3, 65539, 65404, 3, 65539, 65405, 3, 65538, 65409, 3, 65536, 65410, 3, 65537, 65411, 3, 65537, 65412, 3, 65539, 65413, 3, 65539, 65414, 3, 65538, 65419, 3, 65536, 65420, 3, 65539, 65421, 3, 65537, 65422, 3, 65539, 65423, 3, 65539, 65424, 3, 65538, 65427, 3, 65536, 65428, 3, 65539, 65429, 3, 65537, 65430, 3, 65539, 65431, 3, 65538, 65434, 3, 65536, 65435, 3, 65537, 65436, 3, 65539, 65437, 3, 65537, 65438, 3, 65538, 65442, 3, 65536, 65443, 3, 65539, 65444, 3, 65537, 65445, 3, 65539, 65446, 3, 65537, 65447, 3, 65539, 65448, 3, 65537, 65449, 3, 65537, 65450, 3, 65537, 65451, 3, 65539, 65452, 3, 65539, 65453, 3, 65539, 65454, 3, 65537, 65455, 3, 65539, 65456, 3, 65539, 65457, 3, 65539, 65458, 3, 65539, 65459, 3, 65539, 65460, 3, 65537, 65461, 3, 65538, 130929, 3, 131072, 130930, 3, 131073, 130931, 3, 131073, 130932, 3, 131074, 130935, 3, 131072, 130936, 3, 131073, 130937, 3, 131073, 130938, 3, 131073, 130939, 3, 131073, 130940, 3, 131073, 130941, 3, 131074, 130945, 3, 131072, 130946, 3, 131073, 130947, 3, 131073, 130948, 3, 131073, 130949, 3, 131073, 130950, 3, 131074, 130955, 3, 131072, 130956, 3, 131073, 130957, 3, 131073, 130958, 3, 131073, 130959, 3, 131073, 130960, 3, 131074, 130963, 3, 131072, 130964, 3, 131073, 130965, 3, 131073, 130966, 3, 131073, 130967, 3, 131074, 130970, 3, 131072, 130971, 3, 131073, 130972, 3, 131073, 130973, 3, 131073, 130974, 3, 131074, 130978, 3, 131072, 130979, 3, 131073, 130980, 3, 131073, 130981, 3, 131073, 130982, 3, 131073, 130983, 3, 131073, 130984, 3, 131073, 130985, 3, 131073, 130986, 3, 131073, 130987, 3, 131073, 130988, 3, 131073, 130989, 3, 131073, 130990, 3, 131073, 130991, 3, 131073, 130992, 3, 131073, 130993, 3, 131073, 130994, 3, 131073, 130995, 3, 131073, 130996, 3, 131073, 130997, 3, 131074 )
+
+[node name="ornaments" type="TileMap" parent="."]
+z_index = 1
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="BG" type="ParallaxBackground" parent="."]
+offset = Vector2( -200, -100 )
+transform = Transform2D( 1, 0, 0, 1, -200, -100 )
+scroll_offset = Vector2( 20, 20 )
+
+[node name="BG0" type="ParallaxLayer" parent="BG"]
+editor/display_folded = true
+visible = false
+motion_scale = Vector2( 0.4, 0.7 )
+
+[node name="Clouds" type="Sprite" parent="BG/BG0"]
+position = Vector2( 1, 0 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 4964.78, 0, 2560, 360 )
+script = ExtResource( 7 )
+scrollSpeed = Vector2( 60, 0 )
+
+[node name="BG1" type="ParallaxLayer" parent="BG"]
+editor/display_folded = true
+visible = false
+motion_scale = Vector2( 0.5, 0.8 )
+
+[node name="clouds" type="Sprite" parent="BG/BG1"]
+position = Vector2( 0.565521, 0 )
+texture = ExtResource( 8 )
+offset = Vector2( 0, 96 )
+region_enabled = true
+region_rect = Rect2( 2482.39, 0, 1280, 236 )
+script = ExtResource( 7 )
+scrollSpeed = Vector2( 30, 0 )
+
+[node name="BG2" type="ParallaxLayer" parent="BG"]
+editor/display_folded = true
+visible = false
+motion_scale = Vector2( 0.9, 0.9 )
+
+[node name="far-grounds" type="Sprite" parent="BG/BG2"]
+position = Vector2( 0, 90 )
+texture = ExtResource( 9 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 110 )
+
+[node name="FG" type="ParallaxBackground" parent="."]
+editor/display_folded = true
+layer = 1
+offset = Vector2( -200, 0 )
+transform = Transform2D( 1, 0, 0, 1, -200, 0 )
+
+[node name="fog" type="Sprite" parent="FG"]
+visible = false
+material = SubResource( 1 )
+position = Vector2( 200, 0 )
+texture = ExtResource( 11 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 720 )
+script = ExtResource( 7 )
+scrollSpeed = Vector2( 100, 0 )
+parallaxFactor = Vector2( 1.1, 1.1 )
+isParallax = true
+
+[node name="FG1" type="ParallaxLayer" parent="FG"]
+visible = false
+position = Vector2( 0, -32 )
+z_index = -1
+motion_scale = Vector2( 1.1, 1.1 )
+
+[node name="clouds" type="Sprite" parent="FG/FG1"]
+visible = false
+position = Vector2( 0.22934, 80 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 16549.4, 0, 1280, 236 )
+script = ExtResource( 7 )
+
+[node name="PauseCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause" type="Control" parent="PauseCanvasLayer"]
+pause_mode = 2
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 12 )
+
+[node name="BlackOverlay" type="ColorRect" parent="PauseCanvasLayer/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1240.0
+margin_bottom = 680.0
+color = Color( 0, 0, 0, 0.352941 )
+
+[node name="PauseTextCanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="PauseText" type="RichTextLabel" parent="PauseTextCanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 223.0
+custom_fonts/normal_font = SubResource( 2 )
+text = "Pause"
+script = ExtResource( 14 )
+
+[node name="KillFloor" parent="." instance=ExtResource( 15 )]
+position = Vector2( -2032.36, 521.627 )
+scale = Vector2( 100, 45 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="KillFloor"]
+shape = SubResource( 3 )
+
+[node name="Spikes" parent="." instance=ExtResource( 16 )]
+position = Vector2( -590.167, -200.483 )
+
+[node name="Jump Label" type="Label" parent="."]
+margin_left = -2539.8
+margin_top = -161.083
+margin_right = -2378.8
+margin_bottom = -112.083
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "To get over this obstacle,
+You Have to Jump
+Press Z or K"
+
+[node name="WALL JUMP TIME" type="Label" parent="."]
+margin_left = -1465.34
+margin_top = -125.249
+margin_right = -1304.34
+margin_bottom = -76.2488
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "To get past this obstacle 
+hold left or right to cling 
+on to the walls and then
+press jump to do a 
+walljump
+"
+
+[node name="AIRDASH" type="Label" parent="."]
+margin_left = -989.822
+margin_top = -289.632
+margin_right = -828.822
+margin_bottom = -224.632
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "USE THE AIRDASH KEY
+LSHIFT OR X"
+
+[node name="SPIKES" type="Label" parent="."]
+margin_left = -634.781
+margin_top = -248.437
+margin_right = -529.781
+margin_bottom = -183.437
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "THIS IS A SPIKE. 
+Touch=DIE"
+
+[node name="SPIKES2" type="Label" parent="."]
+margin_left = -434.176
+margin_top = -318.394
+margin_right = -214.176
+margin_bottom = -253.394
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "THIS WILL TAKE YOU BACK TO
+LEVEL SELECT. CONGRATULATIONS
+ON BEATING THE LEVEL
+"
+
+[node name="Intro Lael" type="Label" parent="."]
+margin_left = -2859.57
+margin_top = -174.926
+margin_right = -2622.57
+margin_bottom = -97.9264
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Welcome to The Game (In Progress)
+Use arrow Keys or WASD to move
+Note that the jump button is not part
+of the arrow keys or WASD"

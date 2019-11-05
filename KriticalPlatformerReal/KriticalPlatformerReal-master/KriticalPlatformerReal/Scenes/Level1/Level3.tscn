@@ -1,0 +1,302 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Scenes/Level1/KillFloor.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/Environments/sky.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Environments/AdventurerMap.tres" type="TileSet" id=4]
+[ext_resource path="res://Resources/Timothys Shitty Stuff/Spikes.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Resources/Environments/CloudsFront.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/ScrollingBackground.gd" type="Script" id=7]
+[ext_resource path="res://Resources/Environments/clouds.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Environments/far-grounds.png" type="Texture" id=9]
+[ext_resource path="res://Shaders/fog.shader" type="Shader" id=10]
+[ext_resource path="res://icon.png" type="Texture" id=11]
+[ext_resource path="res://Scripts/Pause.gd" type="Script" id=12]
+[ext_resource path="res://Fonts/BebasNeue-Regular.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Scripts/RichTextLabel.gd" type="Script" id=14]
+[ext_resource path="res://Scenes/Level1/SceneChanger.gd" type="Script" id=15]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1770, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 10 )
+shader_param/color = Color( 0.33, 0.15, 0.82, 0.5 )
+shader_param/screenDim = Vector2( 640, 360 )
+shader_param/octaves = 4
+
+[sub_resource type="DynamicFont" id=4]
+size = 100
+font_data = ExtResource( 13 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 30, 30 )
+
+[node name="Level1" type="Node2D"]
+position = Vector2( 50.3506, 70.4909 )
+
+[node name="KillFloor" type="Area2D" parent="."]
+position = Vector2( -1.52588e-005, 7.62939e-006 )
+script = ExtResource( 1 )
+level_to_load = "res://Scenes/Level1/ChangeToHKMantis.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillFloor"]
+position = Vector2( -2610.35, 259.509 )
+shape = SubResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( -3046.35, -57.4909 )
+jumpHeight = 50.0
+jumpTime = 0.3
+
+[node name="Camera2D" type="Camera2D" parent="Player" groups=[
+"Camera",
+]]
+position = Vector2( 5.0105, -1.46484 )
+scale = Vector2( 0.5, 0.5 )
+current = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -5
+
+[node name="sky" type="Sprite" parent="CanvasLayer"]
+position = Vector2( -30, 0.720596 )
+scale = Vector2( 1, 2 )
+texture = ExtResource( 3 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 720 )
+
+[node name="ground" type="TileMap" parent="."]
+position = Vector2( -0.350601, -0.490898 )
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -2359469, 3, 0, -2359468, 3, 2, -2293933, 3, 65536, -2293932, 3, 65538, -2228397, 3, 65536, -2228396, 3, 65538, -2162861, 3, 65536, -2162860, 3, 65538, -2162848, 3, 0, -2162847, 3, 1, -2162846, 3, 2, -2162837, 3, 0, -2162836, 3, 2, -2162830, 3, 0, -2162829, 3, 3, -2162828, 3, 2, -2097325, 3, 65536, -2097324, 3, 65538, -2097312, 3, 131072, -2097311, 3, 131073, -2097310, 3, 131074, -2097301, 3, 131072, -2097300, 3, 131074, -2097294, 3, 131072, -2097293, 3, 131073, -2097292, 3, 131074, -2031789, 3, 65536, -2031788, 3, 65538, -1966253, 3, 131072, -1966252, 3, 131074, -1966217, 3, 0, -1966216, 3, 3, -1966215, 3, 2, -1900731, 3, 0, -1900730, 3, 2, -1900681, 3, 131072, -1900680, 3, 131073, -1900679, 3, 131074, -1835195, 3, 65536, -1835194, 3, 65538, -1835174, 3, 0, -1835173, 3, 2, -1769659, 3, 65536, -1769658, 3, 65538, -1769638, 3, 65536, -1769637, 3, 65538, -1769560, 3, 0, -1769559, 3, 3, -1769558, 3, 1, -1769557, 3, 1, -1769556, 3, 3, -1769555, 3, 3, -1769554, 3, 1, -1769553, 3, 2, -1704123, 3, 65536, -1704122, 3, 65538, -1704102, 3, 65536, -1704101, 3, 65538, -1704066, 3, 0, -1704065, 3, 3, -1704064, 3, 2, -1704058, 3, 0, -1704057, 3, 2, -1704051, 3, 0, -1704050, 3, 2, -1704040, 3, 0, -1704039, 3, 2, -1704024, 3, 131072, -1704023, 3, 131073, -1704022, 3, 131073, -1704021, 3, 131073, -1704020, 3, 131073, -1704019, 3, 131073, -1704018, 3, 5, -1704017, 3, 65538, -1638587, 3, 65536, -1638586, 3, 65538, -1638566, 3, 131072, -1638565, 3, 131074, -1638530, 3, 131072, -1638529, 3, 131073, -1638528, 3, 131074, -1638522, 3, 131072, -1638521, 3, 131074, -1638515, 3, 131072, -1638514, 3, 131074, -1638504, 3, 131072, -1638503, 3, 131074, -1638482, 3, 65536, -1638481, 3, 65538, -1573051, 3, 65536, -1573050, 3, 65538, -1572946, 3, 65536, -1572945, 3, 65538, -1507515, 3, 65536, -1507514, 3, 65538, -1507504, 3, 0, -1507503, 3, 1, -1507502, 3, 1, -1507501, 3, 2, -1507410, 3, 65536, -1507409, 3, 65538, -1441979, 3, 65536, -1441978, 3, 65538, -1441968, 3, 131072, -1441967, 3, 131073, -1441966, 3, 131073, -1441965, 3, 131074, -1441874, 3, 65536, -1441873, 3, 65538, -1376443, 3, 65536, -1376442, 3, 65538, -1376344, 3, 0, -1376343, 3, 1, -1376342, 3, 3, -1376341, 3, 3, -1376340, 3, 3, -1376339, 3, 3, -1376338, 3, 6, -1376337, 3, 65538, -1310907, 3, 65536, -1310906, 3, 65538, -1310901, 3, 0, -1310900, 3, 2, -1310808, 3, 65536, -1310807, 3, 65537, -1310806, 3, 65537, -1310805, 3, 65539, -1310804, 3, 65537, -1310803, 3, 4, -1310802, 3, 131073, -1310801, 3, 131074, -1245371, 3, 131072, -1245370, 3, 131074, -1245365, 3, 65536, -1245364, 3, 65538, -1245272, 3, 131072, -1245271, 3, 131073, -1245270, 3, 131073, -1245269, 3, 131073, -1245268, 3, 131073, -1245267, 3, 131074, -1179829, 3, 65536, -1179828, 3, 65538, -1114293, 3, 65536, -1114292, 3, 65538, -1048769, 3, 0, -1048768, 3, 2, -1048757, 3, 65536, -1048756, 3, 65538, -983233, 3, 65536, -983232, 3, 65538, -983227, 3, 0, -983226, 3, 2, -983221, 3, 65536, -983220, 3, 65538, -917697, 3, 65536, -917696, 3, 65538, -917691, 3, 65536, -917690, 3, 65538, -917685, 3, 65536, -917684, 3, 65538, -852161, 3, 65536, -852160, 3, 65538, -852155, 3, 65536, -852154, 3, 65538, -852149, 3, 65536, -852148, 3, 65538, -786625, 3, 65536, -786624, 3, 65538, -786619, 3, 65536, -786618, 3, 65538, -786613, 3, 65536, -786612, 3, 65538, -721089, 3, 65536, -721088, 3, 65538, -721083, 3, 65536, -721082, 3, 65538, -721077, 3, 65536, -721076, 3, 65538, -655553, 3, 65536, -655552, 3, 65538, -655547, 3, 65536, -655546, 3, 65538, -655541, 3, 65536, -655540, 3, 65538, -590017, 3, 65536, -590016, 3, 65538, -590011, 3, 131072, -590010, 3, 131074, -590005, 3, 131072, -590004, 3, 131074, -524481, 3, 65536, -524480, 3, 65538, -458945, 3, 65536, -458944, 3, 65538, -393409, 3, 65536, -393408, 3, 65538, -327873, 3, 65536, -327872, 3, 65538, -262337, 3, 65536, -262336, 3, 65538, -196801, 3, 65536, -196800, 3, 65538, -196796, 3, 0, -196795, 3, 2, -131265, 3, 65536, -131264, 3, 65538, -131260, 3, 65536, -131259, 3, 65538, -65729, 3, 65536, -65728, 3, 65540, -65727, 3, 3, -65726, 3, 1, -65725, 3, 3, -65724, 3, 65541, -65723, 3, 131074, -193, 3, 131072, -192, 3, 131073, -191, 3, 131073, -190, 3, 131073, -189, 3, 131073, -188, 3, 131074 )
+
+[node name="Area2D" type="Area2D" parent="ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground/Area2D"]
+shape = SubResource( 2 )
+
+[node name="ornaments" type="TileMap" parent="."]
+position = Vector2( -0.350601, 0 )
+z_index = 1
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="Spikes" type="Node2D" parent="."]
+position = Vector2( -2971.69, -480.449 )
+
+[node name="Spikes" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 0.604736, 218.055 )
+
+[node name="Spikes2" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 211.999, 1.31836 )
+rotation = 3.14159
+
+[node name="Spikes11" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 182.8, 0.963257 )
+rotation = 3.14159
+
+[node name="Spikes12" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 152.725, 0.963257 )
+rotation = 3.14159
+
+[node name="Spikes13" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 125.278, 0.963257 )
+rotation = 3.14159
+
+[node name="Spikes14" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 96.3716, 0.963257 )
+rotation = 3.14159
+
+[node name="Spikes15" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 66.5889, 1.25525 )
+rotation = 3.14159
+
+[node name="Spikes16" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 37.9736, 1.25525 )
+rotation = 3.14159
+
+[node name="Spikes17" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 15.4902, 1.54724 )
+rotation = 3.14159
+
+[node name="Spikes8" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 1.53687, -1.84412 )
+
+[node name="Spikes7" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 97.1982, 142.918 )
+
+[node name="Spikes6" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 185.329, 90.0107 )
+
+[node name="Spikes9" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 336.138, 10.3108 )
+
+[node name="Spikes10" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 225.191, -113.414 )
+
+[node name="Spikes18" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 748.43, -42.4036 )
+rotation = 1.5708
+
+[node name="Spikes19" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 939.212, 67.751 )
+rotation = 1.5708
+
+[node name="Spikes20" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 1050.63, 69.5093 )
+rotation = 1.5708
+
+[node name="Spikes21" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 1160.76, 69.3757 )
+rotation = 1.5708
+
+[node name="Spikes22" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 1336.21, 71.2932 )
+rotation = 1.5708
+
+[node name="Spikes23" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 1565.08, 41.7795 )
+rotation = 4.71239
+
+[node name="Spikes26" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 1308.35, 60.0891 )
+rotation = 4.71239
+
+[node name="Spikes24" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 1561.32, 137.947 )
+rotation = 4.71239
+
+[node name="Spikes25" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 1561.74, 157.599 )
+rotation = 4.71239
+
+[node name="Spikes3" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 743.54, -68.3273 )
+
+[node name="Spikes4" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 807.351, -22.0827 )
+
+[node name="Spikes5" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 933.538, 42.4448 )
+
+[node name="BG" type="ParallaxBackground" parent="."]
+offset = Vector2( -200, -100 )
+transform = Transform2D( 1, 0, 0, 1, -200, -100 )
+scroll_offset = Vector2( 20, 20 )
+
+[node name="BG0" type="ParallaxLayer" parent="BG"]
+editor/display_folded = true
+visible = false
+motion_scale = Vector2( 0.4, 0.7 )
+
+[node name="Clouds" type="Sprite" parent="BG/BG0"]
+position = Vector2( 1, 0 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 4964.78, 0, 2560, 360 )
+script = ExtResource( 7 )
+scrollSpeed = Vector2( 60, 0 )
+
+[node name="BG1" type="ParallaxLayer" parent="BG"]
+editor/display_folded = true
+visible = false
+motion_scale = Vector2( 0.5, 0.8 )
+
+[node name="clouds" type="Sprite" parent="BG/BG1"]
+position = Vector2( 0.565521, 0 )
+texture = ExtResource( 8 )
+offset = Vector2( 0, 96 )
+region_enabled = true
+region_rect = Rect2( 2482.39, 0, 1280, 236 )
+script = ExtResource( 7 )
+scrollSpeed = Vector2( 30, 0 )
+
+[node name="BG2" type="ParallaxLayer" parent="BG"]
+editor/display_folded = true
+visible = false
+motion_scale = Vector2( 0.9, 0.9 )
+
+[node name="far-grounds" type="Sprite" parent="BG/BG2"]
+position = Vector2( 0, 90 )
+texture = ExtResource( 9 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 110 )
+
+[node name="FG" type="ParallaxBackground" parent="."]
+editor/display_folded = true
+layer = 1
+offset = Vector2( -200, 0 )
+transform = Transform2D( 1, 0, 0, 1, -200, 0 )
+
+[node name="fog" type="Sprite" parent="FG"]
+visible = false
+material = SubResource( 3 )
+position = Vector2( 200, 0 )
+texture = ExtResource( 11 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 720 )
+script = ExtResource( 7 )
+scrollSpeed = Vector2( 100, 0 )
+parallaxFactor = Vector2( 1.1, 1.1 )
+isParallax = true
+
+[node name="FG1" type="ParallaxLayer" parent="FG"]
+visible = false
+position = Vector2( 0, -32 )
+z_index = -1
+motion_scale = Vector2( 1.1, 1.1 )
+
+[node name="clouds" type="Sprite" parent="FG/FG1"]
+visible = false
+position = Vector2( 0.22934, 80 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 16549.4, 0, 1280, 236 )
+script = ExtResource( 7 )
+
+[node name="PauseCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause" type="Control" parent="PauseCanvasLayer"]
+pause_mode = 2
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 12 )
+
+[node name="BlackOverlay" type="ColorRect" parent="PauseCanvasLayer/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1240.0
+margin_bottom = 680.0
+color = Color( 0, 0, 0, 0.352941 )
+
+[node name="PauseTextCanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="PauseText" type="RichTextLabel" parent="PauseTextCanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 223.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Pause"
+script = ExtResource( 14 )
+
+[node name="SceneChanger" type="Area2D" parent="."]
+position = Vector2( -1350.35, -380.491 )
+script = ExtResource( 15 )
+
+[node name="icon" type="Sprite" parent="SceneChanger"]
+position = Vector2( -10, 4.57764e-005 )
+texture = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChanger"]
+position = Vector2( -10, 3.05176e-005 )
+shape = SubResource( 5 )

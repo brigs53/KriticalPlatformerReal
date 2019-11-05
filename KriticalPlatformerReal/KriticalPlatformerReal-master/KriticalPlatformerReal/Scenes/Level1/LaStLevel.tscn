@@ -1,0 +1,236 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Resources/Timothys Shitty Stuff/KillFloor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/Environments/sky.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Environments/AdventurerMap.tres" type="TileSet" id=4]
+[ext_resource path="res://Resources/Timothys Shitty Stuff/Spikes.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Resources/Environments/CloudsFront.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/ScrollingBackground.gd" type="Script" id=7]
+[ext_resource path="res://Resources/Environments/clouds.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Environments/far-grounds.png" type="Texture" id=9]
+[ext_resource path="res://Shaders/fog.shader" type="Shader" id=10]
+[ext_resource path="res://icon.png" type="Texture" id=11]
+[ext_resource path="res://Scripts/Pause.gd" type="Script" id=12]
+[ext_resource path="res://Fonts/BebasNeue-Regular.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Scripts/RichTextLabel.gd" type="Script" id=14]
+[ext_resource path="res://Resources/Timothys Shitty Stuff/SceneChanger.tscn" type="PackedScene" id=15]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 10 )
+shader_param/color = Color( 0.33, 0.15, 0.82, 0.5 )
+shader_param/screenDim = Vector2( 640, 360 )
+shader_param/octaves = 4
+
+[sub_resource type="DynamicFont" id=3]
+size = 100
+font_data = ExtResource( 13 )
+
+[node name="Level1" type="Node2D"]
+position = Vector2( 50.3506, 70.4909 )
+
+[node name="KillFloor" parent="." instance=ExtResource( 1 )]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( -3046.35, -57.4909 )
+jumpHeight = 50.0
+jumpTime = 0.3
+
+[node name="Camera2D" type="Camera2D" parent="Player" groups=[
+"Camera",
+]]
+position = Vector2( 5.0105, -1.46484 )
+scale = Vector2( 0.5, 0.5 )
+current = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -5
+
+[node name="sky" type="Sprite" parent="CanvasLayer"]
+position = Vector2( -30, 0.720596 )
+scale = Vector2( 1, 2 )
+texture = ExtResource( 3 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 720 )
+
+[node name="ground" type="TileMap" parent="."]
+editor/display_folded = true
+position = Vector2( -0.350601, -0.490898 )
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -1966231, 3, 0, -1966230, 3, 2, -1900695, 3, 65536, -1900694, 3, 65538, -1835159, 3, 65536, -1835158, 3, 65538, -1769623, 3, 65536, -1769622, 3, 65538, -1704087, 3, 65536, -1704086, 3, 65538, -1704075, 3, 0, -1704074, 3, 2, -1704066, 3, 0, -1704065, 3, 2, -1704060, 3, 0, -1704059, 3, 2, -1638551, 3, 65536, -1638550, 3, 65538, -1638539, 3, 131072, -1638538, 3, 131074, -1638530, 3, 131072, -1638529, 3, 131074, -1638524, 3, 131072, -1638523, 3, 131074, -1638504, 3, 0, -1638503, 3, 1, -1638502, 3, 3, -1638501, 3, 2, -1573015, 3, 65536, -1573014, 3, 65538, -1572968, 3, 131072, -1572967, 3, 131073, -1572966, 3, 131073, -1572965, 3, 131074, -1507479, 3, 65536, -1507478, 3, 65538, -1507438, 3, 0, -1507437, 3, 1, -1507436, 3, 1, -1507435, 3, 2, -1441943, 3, 65536, -1441942, 3, 65538, -1441902, 3, 131072, -1441901, 3, 131073, -1441900, 3, 131073, -1441899, 3, 131074, -1441890, 3, 0, -1441889, 3, 3, -1441888, 3, 1, -1441887, 3, 1, -1441886, 3, 3, -1441885, 3, 1, -1441884, 3, 1, -1441883, 3, 3, -1441882, 3, 1, -1441881, 3, 3, -1441880, 3, 1, -1441879, 3, 3, -1441878, 3, 1, -1441877, 3, 1, -1441876, 3, 2, -1376407, 3, 65536, -1376406, 3, 65538, -1376354, 3, 131072, -1376353, 3, 131073, -1376352, 3, 131073, -1376351, 3, 131073, -1376350, 3, 131073, -1376349, 3, 131073, -1376348, 3, 131073, -1376347, 3, 131073, -1376346, 3, 131073, -1376345, 3, 5, -1376344, 3, 65539, -1376343, 3, 65539, -1376342, 3, 65537, -1376341, 3, 65539, -1376340, 3, 65538, -1310871, 3, 65536, -1310870, 3, 65538, -1310837, 3, 0, -1310836, 3, 3, -1310835, 3, 3, -1310834, 3, 3, -1310833, 3, 3, -1310832, 3, 2, -1310809, 3, 131072, -1310808, 3, 131073, -1310807, 3, 131073, -1310806, 3, 5, -1310805, 3, 65539, -1310804, 3, 65538, -1245335, 3, 65536, -1245334, 3, 65538, -1245301, 3, 131072, -1245300, 3, 131073, -1245299, 3, 131073, -1245298, 3, 131073, -1245297, 3, 131073, -1245296, 3, 131074, -1245270, 3, 131072, -1245269, 3, 5, -1245268, 3, 65538, -1179799, 3, 131072, -1179798, 3, 131074, -1179794, 3, 0, -1179793, 3, 3, -1179792, 3, 1, -1179791, 3, 1, -1179790, 3, 1, -1179789, 3, 2, -1179733, 3, 65536, -1179732, 3, 65538, -1114258, 3, 131072, -1114257, 3, 131073, -1114256, 3, 131073, -1114255, 3, 131073, -1114254, 3, 131073, -1114253, 3, 131074, -1114247, 3, 0, -1114246, 3, 2, -1114197, 3, 65536, -1114196, 3, 65538, -1048711, 3, 65536, -1048710, 3, 65538, -1048661, 3, 65536, -1048660, 3, 65538, -983175, 3, 65536, -983174, 3, 65538, -983125, 3, 65536, -983124, 3, 65538, -917639, 3, 65536, -917638, 3, 65538, -917589, 3, 65536, -917588, 3, 65538, -852136, 3, 0, -852135, 3, 2, -852103, 3, 65536, -852102, 3, 65538, -852053, 3, 65536, -852052, 3, 65538, -786600, 3, 131072, -786599, 3, 131074, -786567, 3, 131072, -786566, 3, 131074, -786517, 3, 65536, -786516, 3, 65538, -786511, 3, 0, -786510, 3, 2, -720981, 3, 65536, -720980, 3, 65538, -720975, 3, 65536, -720974, 3, 65538, -655537, 3, 0, -655536, 3, 2, -655445, 3, 65536, -655444, 3, 65538, -655439, 3, 65536, -655438, 3, 65538, -590001, 3, 131072, -590000, 3, 131074, -589984, 3, 0, -589983, 3, 3, -589982, 3, 3, -589981, 3, 1, -589980, 3, 1, -589979, 3, 1, -589978, 3, 2, -589970, 3, 0, -589969, 3, 1, -589968, 3, 1, -589967, 3, 1, -589966, 3, 3, -589965, 3, 1, -589964, 3, 1, -589963, 3, 2, -589909, 3, 65536, -589908, 3, 65538, -589903, 3, 65536, -589902, 3, 65538, -524448, 3, 131072, -524447, 3, 131073, -524446, 3, 131073, -524445, 3, 131073, -524444, 3, 131073, -524443, 3, 131073, -524442, 3, 131074, -524434, 3, 131072, -524433, 3, 131073, -524432, 3, 131073, -524431, 3, 131073, -524430, 3, 131073, -524429, 3, 131073, -524428, 3, 131073, -524427, 3, 131074, -524373, 3, 65536, -524372, 3, 65538, -524367, 3, 65536, -524366, 3, 65538, -458837, 3, 65536, -458836, 3, 65538, -458831, 3, 65536, -458830, 3, 65538, -393387, 3, 0, -393386, 3, 2, -393301, 3, 65536, -393300, 3, 65538, -393295, 3, 65536, -393294, 3, 65538, -327851, 3, 131072, -327850, 3, 131074, -327765, 3, 65536, -327764, 3, 65538, -327759, 3, 65536, -327758, 3, 65538, -262337, 3, 0, -262336, 3, 2, -262333, 3, 0, -262332, 3, 2, -262229, 3, 65536, -262228, 3, 65538, -262223, 3, 65536, -262222, 3, 65538, -196801, 3, 65536, -196800, 3, 65538, -196797, 3, 65536, -196796, 3, 65538, -196693, 3, 65536, -196692, 3, 65538, -196687, 3, 65536, -196686, 3, 65538, -131265, 3, 65536, -131264, 3, 65538, -131261, 3, 65536, -131260, 3, 65538, -131251, 3, 0, -131250, 3, 2, -131157, 3, 65536, -131156, 3, 65538, -131151, 3, 65536, -131150, 3, 65538, -65729, 3, 65536, -65728, 3, 65540, -65727, 3, 3, -65726, 3, 3, -65725, 3, 6, -65724, 3, 65540, -65723, 3, 3, -65722, 3, 1, -65721, 3, 2, -65715, 3, 131072, -65714, 3, 131074, -65621, 3, 65536, -65620, 3, 65538, -65615, 3, 65536, -65614, 3, 65538, -193, 3, 131072, -192, 3, 131073, -191, 3, 131073, -190, 3, 131073, -189, 3, 131073, -188, 3, 131073, -187, 3, 131073, -186, 3, 131073, -185, 3, 131074, -85, 3, 65536, -84, 3, 65538, -79, 3, 65536, -78, 3, 65538, 65451, 3, 65536, 65452, 3, 65538, 65457, 3, 65536, 65458, 3, 65538, 130987, 3, 65536, 130988, 3, 65538, 130993, 3, 65536, 130994, 3, 65538, 196523, 3, 65536, 196524, 3, 65538, 196529, 3, 65536, 196530, 3, 65538, 262059, 3, 65536, 262060, 3, 65538, 262065, 3, 65536, 262066, 3, 65538, 327595, 3, 65536, 327596, 3, 65538, 327601, 3, 65536, 327602, 3, 65538, 393131, 3, 65536, 393132, 3, 65538, 393137, 3, 65536, 393138, 3, 65538, 458667, 3, 65536, 458668, 3, 65538, 458673, 3, 65536, 458674, 3, 65538, 524203, 3, 65536, 524204, 3, 65538, 524209, 3, 65536, 524210, 3, 65538, 589739, 3, 65536, 589740, 3, 65538, 589745, 3, 65536, 589746, 3, 65538, 655275, 3, 65536, 655276, 3, 65538, 655281, 3, 65536, 655282, 3, 65538, 720811, 3, 65536, 720812, 3, 65538, 720817, 3, 65536, 720818, 3, 65538, 786347, 3, 65536, 786348, 3, 65538, 786353, 3, 65536, 786354, 3, 65538, 851883, 3, 65536, 851884, 3, 65538, 851889, 3, 65536, 851890, 3, 65538, 917419, 3, 65536, 917420, 3, 65538, 917425, 3, 65536, 917426, 3, 65538, 982955, 3, 65536, 982956, 3, 65540, 982957, 3, 1, 982958, 3, 3, 982959, 3, 3, 982960, 3, 1, 982961, 3, 6, 982962, 3, 65538, 1048491, 3, 131072, 1048492, 3, 131073, 1048493, 3, 131073, 1048494, 3, 131073, 1048495, 3, 131073, 1048496, 3, 131073, 1048497, 3, 131073, 1048498, 3, 131074 )
+
+[node name="Area2D" type="Area2D" parent="ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground/Area2D"]
+shape = SubResource( 1 )
+
+[node name="ornaments" type="TileMap" parent="."]
+position = Vector2( -0.350601, 0 )
+z_index = 1
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="Spikes and Labels" type="Node2D" parent="."]
+
+[node name="Spikes" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -2532.09, -166.748 )
+
+[node name="Spikes2" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -2467.25, -167.426 )
+
+[node name="Spikes3" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -2268.65, -167.784 )
+
+[node name="Spikes4" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -2239.61, -168.86 )
+
+[node name="Spikes5" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -2226.34, -168.143 )
+
+[node name="Spikes6" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -2306.34, -311.537 )
+
+[node name="Spikes7" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -2279.93, -312.292 )
+
+[node name="Spikes8" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -2138.42, -290.406 )
+
+[node name="Spikes9" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -1845.35, -343.977 )
+
+[node name="Spikes10" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -1789.26, -343.347 )
+
+[node name="Spikes11" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -1716.78, -389.985 )
+
+[node name="Spikes12" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -1617.2, -424.018 )
+
+[node name="Spikes13" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -1428.76, -378.01 )
+
+[node name="Spikes14" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -1311.41, -167.255 )
+
+[node name="Spikes15" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -1269.5, -61.877 )
+
+[node name="Spikes16" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -1270.69, 52.4818 )
+
+[node name="Spikes17" parent="Spikes and Labels" instance=ExtResource( 5 )]
+position = Vector2( -1312.01, 138.7 )
+
+[node name="BG" type="ParallaxBackground" parent="."]
+offset = Vector2( -200, -100 )
+transform = Transform2D( 1, 0, 0, 1, -200, -100 )
+scroll_offset = Vector2( 20, 20 )
+
+[node name="BG0" type="ParallaxLayer" parent="BG"]
+editor/display_folded = true
+visible = false
+motion_scale = Vector2( 0.4, 0.7 )
+
+[node name="Clouds" type="Sprite" parent="BG/BG0"]
+position = Vector2( 1, 0 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 4964.78, 0, 2560, 360 )
+script = ExtResource( 7 )
+scrollSpeed = Vector2( 60, 0 )
+
+[node name="BG1" type="ParallaxLayer" parent="BG"]
+editor/display_folded = true
+visible = false
+motion_scale = Vector2( 0.5, 0.8 )
+
+[node name="clouds" type="Sprite" parent="BG/BG1"]
+position = Vector2( 0.565521, 0 )
+texture = ExtResource( 8 )
+offset = Vector2( 0, 96 )
+region_enabled = true
+region_rect = Rect2( 2482.39, 0, 1280, 236 )
+script = ExtResource( 7 )
+scrollSpeed = Vector2( 30, 0 )
+
+[node name="BG2" type="ParallaxLayer" parent="BG"]
+editor/display_folded = true
+visible = false
+motion_scale = Vector2( 0.9, 0.9 )
+
+[node name="far-grounds" type="Sprite" parent="BG/BG2"]
+position = Vector2( 0, 90 )
+texture = ExtResource( 9 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 110 )
+
+[node name="FG" type="ParallaxBackground" parent="."]
+editor/display_folded = true
+layer = 1
+offset = Vector2( -200, 0 )
+transform = Transform2D( 1, 0, 0, 1, -200, 0 )
+
+[node name="fog" type="Sprite" parent="FG"]
+visible = false
+material = SubResource( 2 )
+position = Vector2( 200, 0 )
+texture = ExtResource( 11 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 720 )
+script = ExtResource( 7 )
+scrollSpeed = Vector2( 100, 0 )
+parallaxFactor = Vector2( 1.1, 1.1 )
+isParallax = true
+
+[node name="FG1" type="ParallaxLayer" parent="FG"]
+visible = false
+position = Vector2( 0, -32 )
+z_index = -1
+motion_scale = Vector2( 1.1, 1.1 )
+
+[node name="clouds" type="Sprite" parent="FG/FG1"]
+visible = false
+position = Vector2( 0.22934, 80 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 16549.4, 0, 1280, 236 )
+script = ExtResource( 7 )
+
+[node name="PauseCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause" type="Control" parent="PauseCanvasLayer"]
+pause_mode = 2
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 12 )
+
+[node name="BlackOverlay" type="ColorRect" parent="PauseCanvasLayer/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1240.0
+margin_bottom = 680.0
+color = Color( 0, 0, 0, 0.352941 )
+
+[node name="PauseTextCanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="PauseText" type="RichTextLabel" parent="PauseTextCanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 223.0
+custom_fonts/normal_font = SubResource( 3 )
+text = "Pause"
+script = ExtResource( 14 )
+
+[node name="SceneChanger" parent="." instance=ExtResource( 15 )]
+position = Vector2( -1287.7, 193.162 )

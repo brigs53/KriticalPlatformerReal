@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/C418 - Biome Fest (Minecraft Volume Beta).ogg-9bdace82d006e588aa622f71d1daccc6.oggstr"
+
+[deps]
+
+source_file="res://C418 - Biome Fest (Minecraft Volume Beta).ogg"
+dest_files=[ "res://.import/C418 - Biome Fest (Minecraft Volume Beta).ogg-9bdace82d006e588aa622f71d1daccc6.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
